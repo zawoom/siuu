@@ -1,0 +1,43 @@
+id: discosure-instance
+
+info:
+  name: Discosure Detect
+  author: abrahack
+  severity: info
+
+requests:
+  - method: GET
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 AutoMate 1.0
+      X-Researcher-BB: abrahack@wearehackerone.com
+      X-Hackerone-Researcher: abrahack@wearehackerone.com
+      X-Contanct-Email: abrahack@wearehackerone.com
+      X-H1: abrahack@wearehackerone.com
+
+    redirects: true
+    path:
+      - '{{BaseURL}}/'
+      - '{{BaseURL}}/xfuu'
+
+
+    stop-at-first-match: true
+    matchers:
+      - type: word
+        words:
+          - "X-Discourse-Route"
+          - "X-Discourse-Cached"
+          - "X-Discourse-TrackView"
+          - "Discourse-Proxy-Id"
+          - "x-discourse-route"
+          - "x-discourse-cached"
+          - "x-discourse-trackview"
+          - "discourse-proxy-id"
+        part: header
+        condition: or
+
+      - type: word
+        words:
+          - '<meta name="generator" content="Discourse'
+        part: body
+        condition: or
+

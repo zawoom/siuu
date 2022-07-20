@@ -1,0 +1,50 @@
+id: moveit-instance
+
+info:
+  name: Moveit Detect
+  author: abrahack
+  severity: info
+
+requests:
+  - method: GET
+
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 AutoMate 1.0
+      X-Researcher-BB: abrahack@wearehackerone.com
+      X-Hackerone-Researcher: abrahack@wearehackerone.com
+      X-Contanct-Email: abrahack@wearehackerone.com
+      X-H1: abrahack@wearehackerone.com
+
+    redirects: true
+    path:
+      - '{{BaseURL}}/'
+      - '{{BaseURL}}/moveitdmz/'
+      - '{{BaseURL}}/moveit/'
+      - '{{BaseURL}}/human.aspx'
+      - '{{BaseURL}}/favicon.ico'
+      - '{{BaseURL}}/images/favicon.ico'
+      
+    stop-at-first-match: true
+    matchers:
+      - type: word
+        words:
+          - "MOVEit Mobile"
+          - "Progress Software Corporation"
+          - "com.progress.moveit.transfer"
+          - "com.progresssoftwarecorporation.moveit"
+        part: body
+        condition: or
+
+      - type: dsl
+        dsl:
+          - "status_code==200 && (\"989289239\" == mmh3(base64_py(body)))"
+
+      - type: word
+        words:
+          - "DMZCookieTest"
+          - "MIDMZLang"
+          - "siLockLongTermInstID"
+          - "LongTermCookieExpireDate"
+        part: header
+        condition: or
+

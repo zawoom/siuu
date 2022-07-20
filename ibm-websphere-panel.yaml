@@ -1,0 +1,36 @@
+id: ibm-websphere-panel
+
+info:
+  name: IBM WebSphere Panel
+  author: pdteam
+  severity: info
+  tags: ibm,websphere,panel
+
+requests:
+  - method: GET
+
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 AutoMate 1.0
+      X-Researcher-BB: abrahack@wearehackerone.com
+      X-Hackerone-Researcher: abrahack@wearehackerone.com
+      X-Contanct-Email: abrahack@wearehackerone.com
+      X-H1: abrahack@wearehackerone.com
+
+    path:
+      - '{{RootURL}}/wps/portal'
+
+    redirects: true
+    max-redirects: 2
+    matchers-condition: and
+    matchers:
+
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        words:
+          - 'IBM WebSphere Portal'
+          - 'IBMPortalWeb'
+        condition: or
+

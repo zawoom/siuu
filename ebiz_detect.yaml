@@ -1,0 +1,48 @@
+id: ebiz-instance
+
+info:
+  name: Ebiz Detect
+  author: abrahack
+  severity: info
+
+requests:
+  - method: GET
+
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 AutoMate 1.0
+      X-Researcher-BB: abrahack@wearehackerone.com
+      X-Hackerone-Researcher: abrahack@wearehackerone.com
+      X-Contanct-Email: abrahack@wearehackerone.com
+      X-H1: abrahack@wearehackerone.com
+
+    redirects: true
+    path:
+      - '{{BaseURL}}/OA_HTML/ibeCButton.js'
+      - '{{BaseURL}}/OA_HTML/ibeCAcpSSOReg.jsp'
+      - '{{BaseURL}}/OA_HTML/AppsLocalLogin.jsp'
+      - '{{BaseURL}}/'
+
+    stop-at-first-match: true
+    matchers:
+      - type: word
+        words:
+          - 'Oracle Corporation, Redwood Shores, CA, USA'
+          - 'This is used to print the button which looks similar to BLAF UI'
+          - 'This is the central function to create buttons'
+          - "/OA_HTML/loadCSRFGuard.js"
+          - '<!-- $Header: ibeCRgdRegContainer.jsp'
+          - 'SQL string is not Query'
+          - 'src="?login.js"></script>'
+          - 'rel="stylesheet" href="?login.css"'
+          - 'message=FND_SSO'
+          - 'The E-Business Home Page is located at'
+          - 'E-Business Suite Home Page'
+        part: body
+        condition: or
+
+      - type: word
+        words:
+          - "X-ORACLE-DMS-ECID"
+        part: header
+        condition: or
+

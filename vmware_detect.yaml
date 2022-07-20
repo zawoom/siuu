@@ -1,0 +1,48 @@
+id: vmware-horizon-instance
+
+info:
+  name: Vmware Horizon Detect
+  author: abrahack
+  severity: info
+
+requests:
+  - method: GET
+
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 AutoMate 1.0
+      X-Researcher-BB: abrahack@wearehackerone.com
+      X-Hackerone-Researcher: abrahack@wearehackerone.com
+      X-Contanct-Email: abrahack@wearehackerone.com
+      X-H1: abrahack@wearehackerone.com
+
+    redirects: true
+    path:
+      - '{{BaseURL}}/'
+      - '{{BaseURL}}/portal/webclient/index.html'
+      - '{{BaseURL}}/broker/xmen/lope'
+      - '{{BaseURL}}/appblast/webclient/index.html'
+      - '{{BaseURL}}/appblast/info.jsp'
+      - '{{BaseURL}}/portal/info.jsp'
+
+      
+    stop-at-first-match: true
+    matchers:
+      - type: word
+        words:
+          - "<title>VMware Horizon</title>"
+          - 'ng-app="com.vmware.vdi.client"'
+          - 'The VMware Horizon Client'
+          - '<title>VMware&nbsp;Horizon</title>'
+          - 'clientlaunch-default'
+          - '"installerLink":"https://www.vmware.com/g'
+        part: body
+        condition: or
+        
+      - type: word
+        words:
+          - "JSESSIONIDHTMLACCESS"
+        part: header
+        condition: or
+
+        
+

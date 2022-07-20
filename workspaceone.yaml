@@ -1,0 +1,48 @@
+id: workspace-one-instance
+
+info:
+  name: Workspace ONE Detect
+  author: abrahack
+  severity: info
+
+requests:
+  - method: GET
+
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 AutoMate 1.0
+      X-Researcher-BB: abrahack@wearehackerone.com
+      X-Hackerone-Researcher: abrahack@wearehackerone.com
+      X-Contanct-Email: abrahack@wearehackerone.com
+      X-H1: abrahack@wearehackerone.com
+
+    redirects: true
+    path:
+      - '{{BaseURL}}/'
+      - '{{BaseURL}}/authcontrol/auth/request/'
+      - '{{BaseURL}}/SAAS/jersey/manager/api/branding'
+      - '{{BaseURL}}/SAAS/auth/login'
+      - '{{BaseURL}}/favicon.ico'
+
+    stop-at-first-match: true
+    matchers:
+      - type: word
+        name: body check
+        words:
+          - '"productName":"Workspace ONE"'
+          - "Workspace ONE Access"
+          - "/SAAS/horizon/"
+        part: body
+        condition: or
+
+      - type: dsl
+        name: ico check 1
+        dsl:
+          - "status_code==200 && (\"-1250474341\" == mmh3(base64_py(body)))"
+
+      - type: dsl
+        name: ico check 2
+        dsl:
+          - "status_code==200 && (\"321909464\" == mmh3(base64_py(body)))"
+
+      
+      

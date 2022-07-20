@@ -1,0 +1,104 @@
+id: jolokia-instance
+info:
+  name: Jolokia Version Disclosure
+  author: abrahack
+  severity: info
+requests:
+  - method: GET
+
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 AutoMate 1.0
+      X-Researcher-BB: abrahack@wearehackerone.com
+      X-Hackerone-Researcher: abrahack@wearehackerone.com
+      X-Contanct-Email: abrahack@wearehackerone.com
+      X-H1: abrahack@wearehackerone.com
+
+    path:
+      - '{{BaseURL}}/jolokia/version'
+      - '{{BaseURL}}/actuator/jolokia/version'
+      - '{{BaseURL}}/api/jolokia/version'
+      - '{{BaseURL}}/api/actuator/jolokia/version'
+      - '{BaseURL}/jolokia-war-1.7.0/version'
+      - '{BaseURL}/jolokia-war-1.6.2/version'
+      - '{BaseURL}/jolokia-war-1.6.1/version'
+      - '{BaseURL}/jolokia-war-1.6.0/version'
+      - '{BaseURL}/jolokia-war-1.5.0/version'
+      - '{BaseURL}/jolokia-war-1.4.0/version'
+      - '{BaseURL}/jolokia-war-1.3.7/version'
+      - '{BaseURL}/jolokia-war-1.3.6/version'
+      - '{BaseURL}/jolokia-war-1.3.5/version'
+      - '{BaseURL}/jolokia-war-1.3.4/version'
+      - '{BaseURL}/jolokia-war-1.3.3/version'
+      - '{BaseURL}/jolokia-war-1.3.2/version'
+      - '{BaseURL}/jolokia-war-1.3.1/version'
+      - '{BaseURL}/jolokia-war-1.3.0/version'
+      - '{BaseURL}/jolokia-war-1.2.3/version'
+      - '{BaseURL}/jolokia-war-1.2.2/version'
+      - '{BaseURL}/jolokia-war-1.2.1/version'
+      - '{BaseURL}/jolokia-war-1.2.0/version'
+      - '{BaseURL}/jolokia-war-1.1.5/version'
+      - '{BaseURL}/jolokia-war-1.1.4/version'
+      - '{BaseURL}/jolokia-war-1.1.3/version'
+      - '{BaseURL}/jolokia-war-1.1.2/version'
+      - '{BaseURL}/jolokia-war-1.1.1/version'
+      - '{BaseURL}/jolokia-war-1.1.0/version'
+      - '{BaseURL}/jolokia-war-1.0.6/version'
+      - '{BaseURL}/jolokia-war-1.0.5/version'
+      - '{BaseURL}/jolokia-war-1.0.4/version'
+      - '{BaseURL}/jolokia-war-1.0.3/version'
+      - '{BaseURL}/jolokia-war-1.0.2/version'
+      - '{BaseURL}/jolokia-war-1.0.1/version'
+      - '{BaseURL}/jolokia-war-1.0.0/version'
+      - '{BaseURL}/jolokia-war-0.95/version'
+      - '{BaseURL}/jolokia-war-0.91/version'
+      - '{BaseURL}/jolokia-war-0.90/version'
+      - '{BaseURL}/jolokia-war-0.83/version'
+      - '{BaseURL}/jolokia-war-0.82/version'
+      - '{BaseURL}/jolokia-war-0.81/version'
+      - '{BaseURL}/api/jolokia-war-1.7.0/version'
+      - '{BaseURL}/api/jolokia-war-1.6.2/version'
+      - '{BaseURL}/api/jolokia-war-1.6.1/version'
+      - '{BaseURL}/api/jolokia-war-1.6.0/version'
+      - '{BaseURL}/api/jolokia-war-1.5.0/version'
+      - '{BaseURL}/api/jolokia-war-1.4.0/version'
+      - '{BaseURL}/api/jolokia-war-1.3.7/version'
+      - '{BaseURL}/api/jolokia-war-1.3.6/version'
+      - '{BaseURL}/api/jolokia-war-1.3.5/version'
+      - '{BaseURL}/api/jolokia-war-1.3.4/version'
+      - '{BaseURL}/api/jolokia-war-1.3.3/version'
+      - '{BaseURL}/api/jolokia-war-1.3.2/version'
+      - '{BaseURL}/api/jolokia-war-1.3.1/version'
+      - '{BaseURL}/api/jolokia-war-1.3.0/version'
+      - '{BaseURL}/api/jolokia-war-1.2.3/version'
+      - '{BaseURL}/api/jolokia-war-1.2.2/version'
+      - '{BaseURL}/api/jolokia-war-1.2.1/version'
+      - '{BaseURL}/api/jolokia-war-1.2.0/version'
+      - '{BaseURL}/api/jolokia-war-1.1.5/version'
+      - '{BaseURL}/api/jolokia-war-1.1.4/version'
+      - '{BaseURL}/api/jolokia-war-1.1.3/version'
+      - '{BaseURL}/api/jolokia-war-1.1.2/version'
+      - '{BaseURL}/api/jolokia-war-1.1.1/version'
+      - '{BaseURL}/api/jolokia-war-1.1.0/version'
+      - '{BaseURL}/api/jolokia-war-1.0.6/version'
+      - '{BaseURL}/api/jolokia-war-1.0.5/version'
+      - '{BaseURL}/api/jolokia-war-1.0.4/version'
+      - '{BaseURL}/api/jolokia-war-1.0.3/version'
+      - '{BaseURL}/api/jolokia-war-1.0.2/version'
+      - '{BaseURL}/api/jolokia-war-1.0.1/version'
+      - '{BaseURL}/api/jolokia-war-1.0.0/version'
+      - '{BaseURL}/api/jolokia-war-0.95/version'
+      - '{BaseURL}/api/jolokia-war-0.91/version'
+      - '{BaseURL}/api/jolokia-war-0.90/version'
+      - '{BaseURL}/api/jolokia-war-0.83/version'
+      - '{BaseURL}/api/jolokia-war-0.82/version'
+      - '{BaseURL}/api/jolokia-war-0.81/version'
+    matchers-condition: or
+    stop-at-first-match: true
+    matchers:
+      - type: word
+        words:
+          - '"timestamp":'
+          - '"protocol":'
+          - '"agent":'
+        condition: and
+

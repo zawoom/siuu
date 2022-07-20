@@ -1,0 +1,102 @@
+id: arcgis-instance
+info:
+  name: Arcgis Discover
+  author: abrahack
+  severity: info
+requests:
+  - method: GET
+
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 AutoMate 1.0
+      X-Researcher-BB: abrahack@wearehackerone.com
+      X-Hackerone-Researcher: abrahack@wearehackerone.com
+      X-Contanct-Email: abrahack@wearehackerone.com
+      X-H1: abrahack@wearehackerone.com
+
+    path:
+      - '{{BaseURL}}/portal/sharing/portals/info'
+      - '{{BaseURL}}/portal/sharing/portals/info?f=pjson'
+      - '{{BaseURL}}/portal/sharing/portals?f=pjson'
+      - '{{BaseURL}}/portal/sharing/portals'
+      - '{{BaseURL}}/portal/sharing/rest/portals/info?f=pjson'
+      - '{{BaseURL}}/portal/sharing/portals/regions?f=pjson'
+      - '{{BaseURL}}/portal/sharing/portals/languages?f=pjson'
+      - '{{BaseURL}}/portal/portaladmin/'
+      - '{{BaseURL}}/portal/portalhelp/apidocs/rest/index.html'
+      - '{{BaseURL}}/server/rest/services/?f=pjson'
+
+      - '{{BaseURL}}/arcgis/portal/sharing/portals/info'
+      - '{{BaseURL}}/arcgis/portal/sharing/portals/info?f=pjson'
+      - '{{BaseURL}}/arcgis/portal/sharing/portals?f=pjson'
+      - '{{BaseURL}}/arcgis/portal/sharing/portals'
+      - '{{BaseURL}}/arcgis/portal/sharing/rest/portals/info?f=pjson'
+      - '{{BaseURL}}/arcgis/portal/sharing/portals/regions?f=pjson'
+      - '{{BaseURL}}/arcgis/portal/sharing/portals/languages?f=pjson'
+      - '{{BaseURL}}/arcgis/portal/portaladmin/'
+      - '{{BaseURL}}/arcgis/portal/portalhelp/apidocs/rest/index.html'
+      - '{{BaseURL}}/arcgis/server/rest/services/?f=pjson'
+
+      - '{{BaseURL}}/portal1/sharing/portals/info'
+      - '{{BaseURL}}/portal1/sharing/portals/info?f=pjson'
+      - '{{BaseURL}}/portal1/sharing/portals?f=pjson'
+      - '{{BaseURL}}/portal1/sharing/portals'
+      - '{{BaseURL}}/portal1/sharing/rest/portals/info?f=pjson'
+      - '{{BaseURL}}/portal1/sharing/portals/regions?f=pjson'
+      - '{{BaseURL}}/portal1/sharing/portals/languages?f=pjson'
+      - '{{BaseURL}}/portal1/portaladmin/'
+      - '{{BaseURL}}/portal1/portalhelp/apidocs/rest/index.html'
+      - '{{BaseURL}}/server1/rest/services/?f=pjson'
+
+
+      - '{{BaseURL}}/arcgis/portal1/sharing/portals/info'
+      - '{{BaseURL}}/arcgis/portal1/sharing/portals/info?f=pjson'
+      - '{{BaseURL}}/arcgis/portal1/sharing/portals?f=pjson'
+      - '{{BaseURL}}/arcgis/portal1/sharing/portals'
+      - '{{BaseURL}}/arcgis/portal1/sharing/rest/portals/info?f=pjson'
+      - '{{BaseURL}}/arcgis/portal1/sharing/portals/regions?f=pjson'
+      - '{{BaseURL}}/arcgis/portal1/sharing/portals/languages?f=pjson'
+      - '{{BaseURL}}/arcgis/portal1/portaladmin/'
+      - '{{BaseURL}}/arcgis/portal1/portalhelp/apidocs/rest/index.html'
+      - '{{BaseURL}}/arcgis/server1/rest/services/?f=pjson'
+
+
+
+      - '{{BaseURL}}/sharing/portals/info'
+      - '{{BaseURL}}/sharing/portals/info?f=pjson'
+      - '{{BaseURL}}/sharing/portals?f=pjson'
+      - '{{BaseURL}}/sharing/portals'
+      - '{{BaseURL}}/sharing/rest/portals/info?f=pjson'
+      - '{{BaseURL}}/sharing/portals/regions?f=pjson'
+      - '{{BaseURL}}/sharing/portals/languages?f=pjson'
+      - '{{BaseURL}}/portaladmin/'
+      - '{{BaseURL}}/portalhelp/apidocs/rest/index.html'
+      - '{{BaseURL}}/rest/services/?f=pjson'
+
+      - '{{BaseURL}}/arcgis/sharing/portals/info'
+      - '{{BaseURL}}/arcgis/sharing/portals/info?f=pjson'
+      - '{{BaseURL}}/arcgis/sharing/portals?f=pjson'
+      - '{{BaseURL}}/arcgis/sharing/portals'
+      - '{{BaseURL}}/arcgis/sharing/rest/portals/info?f=pjson'
+      - '{{BaseURL}}/arcgis/sharing/portals/regions?f=pjson'
+      - '{{BaseURL}}/arcgis/sharing/portals/languages?f=pjson'
+      - '{{BaseURL}}/arcgis/portaladmin/'
+      - '{{BaseURL}}/arcgis/portalhelp/apidocs/rest/index.html'
+      - '{{BaseURL}}/arcgis/rest/services/?f=pjson'
+
+    stop-at-first-match: true
+    matchers:
+      - type: word
+        words:
+          - 'Sharing API Info'
+          - 'owningSystemUrl'
+          - 'tokenServicesUrl'
+          - 'Specified output format not supported.'
+          - '"name": "World"'
+          - '"language": "Arabic"'
+          - 'esri-rest.css'
+          - 'Portal Administrator'
+          - '<title>Portal services</title>'
+          - '<a href="flisting.htm">flist</a>'
+          - '"currentVersion"'
+        condition: or
+      

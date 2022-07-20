@@ -1,0 +1,51 @@
+id: workspace-one-uem-instance
+
+info:
+  name: Workspace ONE UEM Detect
+  author: abrahack
+  severity: info
+
+requests:
+  - method: GET
+
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 AutoMate 1.0
+      X-Researcher-BB: abrahack@wearehackerone.com
+      X-Hackerone-Researcher: abrahack@wearehackerone.com
+      X-Contanct-Email: abrahack@wearehackerone.com
+      X-H1: abrahack@wearehackerone.com
+
+    redirects: true
+    path:
+      - '{{BaseURL}}/'
+      - '{{BaseURL}}/AirWatch'
+      - '{{BaseURL}}/AirWatch/default.aspx'
+      - '{{BaseURL}}/AirWatch/Login'
+      - '{{BaseURL}}/favicon.ico'
+      - '{{BaseURL}}/AirWatch/favicon.ico'
+      - '{{BaseURL}}/AirWatch/Images/Logos/vmware_airwatch_horizontal_light.svg'
+
+    stop-at-first-match: true
+    matchers:
+      - type: word
+        name: body check
+        words:
+          - 'About VMware AirWatch'
+          - "/AirWatch/Login/Login-ChangeCulture?Language="
+          - "aw.browserCheck('You are using an older"
+          - 'C154.7,17.4,156.6,16,156.6,14'
+          - 'M89.2,6.5c0-0.1,0.1-0.2,0.2-0.2h0.7c0.2,0,0.4'
+        part: body
+        condition: or
+
+      - type: dsl
+        name: ico check 1
+        dsl:
+          - "status_code==200 && (\"-1153873472\" == mmh3(base64_py(body)))"
+
+      - type: dsl
+        name: ico check 2
+        dsl:
+          - "status_code==200 && (\"321909464\" == mmh3(base64_py(body)))"
+
+

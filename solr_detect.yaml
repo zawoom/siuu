@@ -1,0 +1,31 @@
+id: solr-instance
+
+info:
+  name: Solr Detect
+  author: abrahack
+  severity: info
+
+requests:
+  - method: GET
+    headers:
+      User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.100 Safari/537.36 AutoMate 1.0
+      X-Researcher-BB: abrahack@wearehackerone.com
+      X-Hackerone-Researcher: abrahack@wearehackerone.com
+      X-Contanct-Email: abrahack@wearehackerone.com
+      X-H1: abrahack@wearehackerone.com
+
+    redirects: true
+    path:
+      - '{{BaseURL}}/solr/'
+      - '{{BaseURL}}/solr/admin'
+
+
+    stop-at-first-match: true
+    matchers:
+      - type: word
+        words:
+          - 'ng-app="solrAdminApp"'
+          - 'Solr Admin'
+        part: body
+        condition: or
+
